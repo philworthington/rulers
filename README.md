@@ -1,6 +1,6 @@
 # Rulers
 
-TODO: Write a gem description
+This is a simple gem library.
 
 ## Installation
 
@@ -16,9 +16,6 @@ Or install it yourself as:
 
     $ gem install rulers
 
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
