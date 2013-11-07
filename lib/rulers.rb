@@ -12,18 +12,16 @@ module Rulers
         return [404,
           {'Content-Type' => 'text/html'}, []]
       end
-      if env['PATH_INFO'] == '/'
-        return [300, {"Location" => '/home/index'}, []]
 
       klass, act = get_controller_and_action(env)
       controller = klass.new(env)
-      begin
-        text = controller.send(act)
-      rescue Exception => e
-        text = e
-      end
-      [200, {'Content-Type' => 'text/html'},
-        [text]]
+      text = controller.send(act)
+      if controller.get_response
+        st, hd, rs = controller.get_response.to_a
+        [st, hd, [rs.body].flatten]
+      else
+        [200,
+          {'Content-Type' => 'text/html'}, [text]]
       end
     end
   end
